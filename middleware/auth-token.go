@@ -16,5 +16,6 @@ func (m *Middleware) AuthToken(next http.Handler) http.Handler {
 
 			_ = m.App.WriteJSON(writer, http.StatusUnauthorized, payload)
 		}
+		next.ServeHTTP(writer, r)
 	})
 }

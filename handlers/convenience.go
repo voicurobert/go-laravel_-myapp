@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"github.com/voicurobert/celeritas"
 	"net/http"
 )
 
@@ -35,4 +36,14 @@ func (h *Handlers) sessionDestroy(ctx context.Context) error {
 
 func (h *Handlers) randomString(n int) string {
 	return h.App.RandomString(n)
+}
+
+func (h *Handlers) encrypt(text string) (string, error) {
+	enc := celeritas.Encryption{Key: []byte(h.App.EncryptionKey)}
+	return enc.Encrypt(text)
+}
+
+func (h *Handlers) decrypt(crypto string) (string, error) {
+	enc := celeritas.Encryption{Key: []byte(h.App.EncryptionKey)}
+	return enc.Decrypt(crypto)
 }

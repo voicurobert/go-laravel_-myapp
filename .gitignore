@@ -16,3 +16,6 @@
 /.idea/misc.xml
 
 /vendor
+/db-data
+/.idea
+/migrations
